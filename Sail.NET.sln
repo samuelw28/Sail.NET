@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sail.NET", "Sail.NET\Sail.NET.csproj", "{F41C80CE-9446-4507-B265-1485F2BE9239}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F41C80CE-9446-4507-B265-1485F2BE9239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41C80CE-9446-4507-B265-1485F2BE9239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41C80CE-9446-4507-B265-1485F2BE9239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41C80CE-9446-4507-B265-1485F2BE9239}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F5192C3-57EC-43F8-8EFD-4935C0EE4930}
+	EndGlobalSection
+EndGlobal
