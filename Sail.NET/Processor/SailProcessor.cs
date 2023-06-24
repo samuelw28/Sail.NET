@@ -8,7 +8,7 @@ namespace Sail.NET
     {
         private HttpClient _client { get; set; }
 
-        private Dictionary<SailSupportedModels, SailModel> _models { get; set; }
+        private Dictionary<SailModelTypes, SailModel> _models { get; set; }
 
         public void Initialize(SailProcessorArgs args)
         {
@@ -17,23 +17,23 @@ namespace Sail.NET
 
             _models = new();
 
-            foreach (SailSupportedModels model in args.Models)
+            foreach (SailModelTypes model in args.Models)
             {
                 ConfigureDefaultModel(model);
             }
         }
 
-        private void ConfigureDefaultModel(SailSupportedModels model)
+        private void ConfigureDefaultModel(SailModelTypes model)
         {
             _models[model] = new(SailModelTemplates.DefaultModels[model]);
         }
 
-        public void ConfigureModel(SailSupportedModels model, SailModelArgs args)
+        public void ConfigureModel(SailModelTypes model, SailModelArgs args)
         {
             _models[model] = new(args);
         }
 
-        public void ReconfigureModel(SailSupportedModels model, int tokens = 0, double temperature = 0)
+        public void ReconfigureModel(SailModelTypes model, int tokens = 0, double temperature = 0)
         {
             if (_models.TryGetValue(model, out var sailModel))
             {
@@ -65,7 +65,7 @@ namespace Sail.NET
             }
         }
 
-        public async Task<SailContext<SailMessage>> SendRequestAsync(string input, SailSupportedModels model, int tokens = 0, double temperature = 0, int count = 1)
+        public async Task<SailContext<SailMessage>> SendRequestAsync(string input, SailModelTypes model, int tokens = 0, double temperature = 0, int count = 1)
         {
             SailMessage message = new()
             {

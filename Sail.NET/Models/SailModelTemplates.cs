@@ -2,10 +2,10 @@
 {
     public static class SailModelTemplates
     {
-        private static readonly Dictionary<SailSupportedModels, SailModelArgs> _defaultModels = new()
+        private static readonly Dictionary<SailModelTypes, SailModelArgs> _defaultModels = new()
         {
             {
-                SailSupportedModels.GPT3Point5,
+                SailModelTypes.GPT3Point5,
                 new()
                 {
                     Name = "ChatGPT 3.5",
@@ -17,7 +17,7 @@
                 }
             },
             {
-                SailSupportedModels.DALLE,
+                SailModelTypes.DALLE,
                 new()
                 {
                     Name = "DALL-E",
@@ -30,6 +30,6 @@
             }
         };
 
-        public static Dictionary<SailSupportedModels, SailModelArgs> DefaultModels = _defaultModels;
+        public static Dictionary<SailModelTypes, SailModelArgs> DefaultModels = _defaultModels;
     }
 }

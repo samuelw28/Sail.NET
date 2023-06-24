@@ -1,6 +1,6 @@
 ﻿namespace Sail.NET
 {
-    public enum SailSupportedModels
+    public enum SailModelTypes
     {
         GPT3Point5,
         GPT4,
