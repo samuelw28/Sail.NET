@@ -3,3 +3,9 @@ Sail.NET is a .NET wrapper for OpenAI's API that aims to create a streamlined an
 ## Setup
 1. Create an API key at: https://platform.openai.com/
 2. Install the Sail.NET NuGet package
+## History
+### Version 0.1.1
+- First implemtation, added support for ChatGPT requests and responses
+### Version 0.2.1
+- Added support for multiple endpoints
+- Refactored code to make using the library simpler
