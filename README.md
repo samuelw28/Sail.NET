@@ -6,10 +6,10 @@ Sail.NET is a .NET wrapper for OpenAI's API that aims to create a streamlined an
 ## Implementation
 ```C#
 // Create the processor object
-SailProcessor processor = new();
+var processor = new SailProcessor();
 
 // Create the arguments to pass in
-SailProcessorArgs processorArgs = new()
+var processorArgs = new SailProcessorArgs()
   {
       ApiKey = "*** API KEY GOES HERE ***",
       Models = new()
