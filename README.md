@@ -44,5 +44,5 @@ if (response.Success)
 - Simplified implementation process
 ### Version 0.1
 #### Version 0.1.1
-- Created basic request and resposne classes
+- Created basic request and response classes
 - Added support for ChatGPT messaging
