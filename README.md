@@ -36,6 +36,9 @@ if (response.Success)
 ## History
 ### Version 0.2
 #### Version 0.2.2
+- Added comments to each class
+- - Removed "GPT4" from "SailModeTypes"
+#### Version 0.2.2
 - Renamed "SailModelType" enum
 #### Version 0.2.1
 - Refactored code to allow for multiple endpoints
