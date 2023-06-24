@@ -2,7 +2,7 @@
 
 namespace Sail.NET
 {
-    public class SailChatMessage
+    internal class GptChatMessage
     {
         [JsonPropertyName("role")]
         public string Role { get; set; }

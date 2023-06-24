@@ -2,6 +2,8 @@
 {
     public enum SailSupportedModels
     {
-        GPT3Point5
+        GPT3Point5,
+        GPT4,
+        DALLE
     }
 }

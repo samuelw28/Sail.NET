@@ -2,13 +2,13 @@
 
 namespace Sail.NET
 {
-    public class SailRequest
+    internal class GptRequest
     {
         [JsonPropertyName("model")]
         public string Model { get; set; }
 
         [JsonPropertyName("messages")]
-        public List<SailChatMessage> Messages { get; set; }
+        public List<GptChatMessage> Messages { get; set; }
 
         [JsonPropertyName("max_tokens")]
         public int Tokens { get; set; }

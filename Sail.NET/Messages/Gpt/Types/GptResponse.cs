@@ -2,12 +2,12 @@
 
 namespace Sail.NET
 {
-    public class SailResponse
+    internal class GptResponse
     {
         [JsonPropertyName("choices")]
-        public SailChoice[] Choices { get; set; }
+        public GptChoice[] Choices { get; set; }
 
         [JsonPropertyName("usage")]
-        public SailTokens TokenInfo { get; set; }
+        public GptTokens TokenInfo { get; set; }
     }
 }
