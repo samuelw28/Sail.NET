@@ -1,5 +1,8 @@
 ﻿namespace Sail.NET
 {
+    /// <summary>
+    /// A model used in the Sail.NET library
+    /// </summary>
     public class SailModel
     {
         public string Name { get; set; }

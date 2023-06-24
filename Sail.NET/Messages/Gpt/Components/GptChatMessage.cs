@@ -2,6 +2,9 @@
 
 namespace Sail.NET
 {
+    /// <summary>
+    /// A chat message that is sent from the ChatGPT endpoint
+    /// </summary>
     internal class GptChatMessage
     {
         [JsonPropertyName("role")]

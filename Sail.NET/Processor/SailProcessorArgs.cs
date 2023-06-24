@@ -1,5 +1,8 @@
 ﻿namespace Sail.NET
 {
+    /// <summary>
+    /// The arguments used to create a processor
+    /// </summary>
     public class SailProcessorArgs
     {
         public string ApiKey { get; set; }

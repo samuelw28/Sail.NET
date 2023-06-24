@@ -1,5 +1,8 @@
 ﻿namespace Sail.NET
 {
+    /// <summary>
+    /// The arguments used to create a model
+    /// </summary>
     public class SailModelArgs
     {
         public string Name { get; set; }

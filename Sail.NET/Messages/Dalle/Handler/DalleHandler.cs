@@ -2,6 +2,9 @@
 
 namespace Sail.NET
 {
+    /// <summary>
+    /// Handles messages being sent to the DALL-E endpoint
+    /// </summary>
     internal class DalleHandler : SailApiHandler
     {
         public override string CreateRequest(string input, SailModel model, int tokens, double temperature, int count)

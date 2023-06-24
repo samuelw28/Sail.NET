@@ -2,6 +2,9 @@
 
 namespace Sail.NET
 {
+    /// <summary>
+    /// An error that has occurred when sending a request
+    /// </summary>
     internal class ApiError
     {
         [JsonPropertyName("message")]

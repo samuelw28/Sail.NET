@@ -3,6 +3,9 @@ using System.Text.Json.Serialization;
 
 namespace Sail.NET
 {
+    /// <summary>
+    /// Information relating to token usage that is sent from the ChatGPT endpoint
+    /// </summary>
     internal class GptTokens
     {
         [JsonPropertyName("prompt_tokens")]

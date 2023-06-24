@@ -2,6 +2,9 @@
 
 namespace Sail.NET
 {
+    /// <summary>
+    /// A request sent to the DALL-E endpoint
+    /// </summary>
     internal class DalleRequest
     {
         [JsonPropertyName("prompt")]

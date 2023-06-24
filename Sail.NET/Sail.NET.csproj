@@ -4,8 +4,28 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>0.2.2</AssemblyVersion>
-    <FileVersion>0.2.2</FileVersion>
+    <AssemblyVersion>0.2.3</AssemblyVersion>
+    <FileVersion>0.2.3</FileVersion>
+    <SignAssembly>False</SignAssembly>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Sail.NET</Title>
+    <Authors>samuelw28</Authors>
+    <Description>A .NET wrapper for interacting with the OpenAI API.</Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/samuelw28/Sail.NET</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>AI, ChatGPT, DALL-E, .NET</PackageTags>
+    <Version>0.2.3</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

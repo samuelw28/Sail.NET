@@ -1,5 +1,8 @@
 ﻿namespace Sail.NET
 {
+    /// <summary>
+    /// A message that is sent using the Sail.NET library
+    /// </summary>
     public class SailMessage
     {
         public int ID { get; set; }

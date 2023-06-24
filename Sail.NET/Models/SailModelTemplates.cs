@@ -1,5 +1,8 @@
 ﻿namespace Sail.NET
 {
+    /// <summary>
+    /// Default templates that can be used in place of manually configuring each model
+    /// </summary>
     public static class SailModelTemplates
     {
         private static readonly Dictionary<SailModelTypes, SailModelArgs> _defaultModels = new()

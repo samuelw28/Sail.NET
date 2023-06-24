@@ -1,7 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace Sail.NET
-{
+{    /// <summary>
+     /// A request sent to the ChatGPT endpoint
+     /// </summary>
     internal class GptRequest
     {
         [JsonPropertyName("model")]

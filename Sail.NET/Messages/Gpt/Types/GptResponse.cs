@@ -2,6 +2,9 @@
 
 namespace Sail.NET
 {
+    /// <summary>
+    /// A response sent from the ChatGPT endpoint
+    /// </summary>
     internal class GptResponse
     {
         [JsonPropertyName("choices")]

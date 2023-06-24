@@ -2,6 +2,9 @@
 
 namespace Sail.NET
 {
+    /// <summary>
+    /// Handles messages being sent to the ChatGPT endpoint
+    /// </summary>
     internal class GptHandler : SailApiHandler
     {
         private List<GptChatMessage> _messages { get; set; }
