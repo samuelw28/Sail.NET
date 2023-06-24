@@ -14,8 +14,8 @@ SailProcessorArgs processorArgs = new()
       ApiKey = "*** API KEY GOES HERE ***",
       Models = new()
       {
-          SailSupportedModels.GPT3Point5,
-          SailSupportedModels.DALLE
+          SailModelTypes.GPT3Point5,
+          SailModelTypes.DALLE
       }
   };
 
@@ -23,7 +23,7 @@ SailProcessorArgs processorArgs = new()
 processor.Initialize(processorArgs);
 
 // Send a request
-SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailSupportedModels.DALLE, count: 1);
+SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailModelTypes.DALLE, count: 1);
 
 // Check if response is successful
 if (response.Success)
@@ -34,8 +34,12 @@ if (response.Success)
 ```
 
 ## History
-### Version 0.2.1
+### Version 0.2
+#### Version 0.2.2
+- Renamed enum
+#### Version 0.2.1
 - Added support for multiple endpoints
 - Refactored code to make using the library simpler
-### Version 0.1.1
+### Version 0.1
+#### Version 0.1.1
 - First implemtation, added support for ChatGPT requests and responses
