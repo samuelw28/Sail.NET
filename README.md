@@ -34,8 +34,8 @@ if (response.Success)
 ```
 
 ## History
-### Version 0.1.1
-- First implemtation, added support for ChatGPT requests and responses
 ### Version 0.2.1
 - Added support for multiple endpoints
 - Refactored code to make using the library simpler
+### Version 0.1.1
+- First implemtation, added support for ChatGPT requests and responses
