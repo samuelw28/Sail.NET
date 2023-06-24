@@ -36,10 +36,13 @@ if (response.Success)
 ## History
 ### Version 0.2
 #### Version 0.2.2
-- Renamed enum
+- Renamed "SailModelType" enum
 #### Version 0.2.1
-- Added support for multiple endpoints
-- Refactored code to make using the library simpler
+- Refactored code to allow for multiple endpoints
+- Added support for DALL-E image generation
+- Fixed issue where ChatGPT messages weren't being stored
+- Simplified implementation process
 ### Version 0.1
 #### Version 0.1.1
-- First implemtation, added support for ChatGPT requests and responses
+- Created basic request and resposne classes
+- Added support for ChatGPT messaging
