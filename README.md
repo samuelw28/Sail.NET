@@ -22,6 +22,19 @@ var processorArgs = new SailProcessorArgs()
 // Initialize the processor
 processor.Initialize(processorArgs);
 
+// Create additional model arguments
+var dalleArgs = new SailModelArgs()
+{
+    Name = "DALL-E",
+    Count = 1
+};
+
+// Configure model with custom settings
+processor.ConfigureModel(SailModelTypes.DALLE, dalleArgs);
+
+// Reconfigure model with updated settings
+processor.ReconfigureModel(SailModelTypes.GPT3Point5, temperature: 0.1);
+
 // Send a request
 SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailModelTypes.DALLE, count: 1);
 
