@@ -3,7 +3,7 @@ Sail.NET is a .NET wrapper for OpenAI's API that aims to create a streamlined an
 ## Setup
 1. Create an API key at: https://platform.openai.com/
 2. Install the Sail.NET NuGet package here: https://www.nuget.org/packages/Sail.NET
-## Implementation
+## Basic Implementation
 ```C#
 // Create the processor object
 var processor = new SailProcessor();
@@ -21,6 +21,18 @@ var processorArgs = new SailProcessorArgs()
 // Initialize the processor
 processor.Initialize(processorArgs);
 
+// Send a request
+SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailModelTypes.DALLE, count: 1);
+
+// Check if response is successful
+if (response.Success)
+{
+    // Output response
+    Console.WriteLine("Response: " + response.Result.Output);
+}
+```
+## Additional Implementation
+```C#
 // Create additional model arguments
 var dalleArgs = new SailModelArgs()
 {
@@ -33,18 +45,7 @@ processor.ConfigureModel(SailModelTypes.DALLE, dalleArgs);
 
 // Reconfigure model with updated settings
 processor.ReconfigureModel(SailModelTypes.GPT3Point5, temperature: 0.1);
-
-// Send a request
-SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailModelTypes.DALLE, count: 1);
-
-// Check if response is successful
-if (response.Success)
-{
-    // Output response
-    Console.WriteLine("Response: " + response.Result.Output);
-}
 ```
-
 ## History
 ### Version 0.2
 #### Version 0.2.3
