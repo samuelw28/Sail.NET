@@ -49,6 +49,9 @@ processor.ReconfigureModel(SailModelTypes.GPT3Point5, temperature: 0.1);
 ```
 ## History
 ### Version 0.2
+#### Version 0.2.4
+- Added missing 'Count' variable to 'SailModelArgs'
+- Added '_handlers' dictionary for assigning a handler for each model
 #### Version 0.2.3
 - Added comments to each class
 - Removed "GPT4" from "SailModeTypes"
