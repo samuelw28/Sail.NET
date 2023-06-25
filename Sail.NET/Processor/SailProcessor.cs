@@ -11,6 +11,8 @@ namespace Sail.NET
     {
         private HttpClient _client { get; set; }
 
+        private Dictionary<SailModelTypes, SailApiHandler> _handlers { get; set; }
+
         private Dictionary<SailModelTypes, SailModel> _models { get; set; }
 
         /// <summary>
@@ -21,6 +23,18 @@ namespace Sail.NET
         {
             _client = new();
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", args.ApiKey);
+
+            _handlers = new()
+            {
+                {
+                    SailModelTypes.GPT3Point5,
+                    new GptHandler()
+                },
+                {
+                    SailModelTypes.DALLE,
+                    new DalleHandler()
+                }
+            };
 
             _models = new();
 
@@ -36,7 +50,7 @@ namespace Sail.NET
         /// <param name="model">The model being configured</param>
         private void ConfigureDefaultModel(SailModelTypes model)
         {
-            _models[model] = new(SailModelTemplates.DefaultModels[model]);
+            _models[model] = new(SailModelTemplates.DefaultModels[model], _handlers[model]);
         }
 
         /// <summary>
@@ -46,7 +60,7 @@ namespace Sail.NET
         /// <param name="args">The arguments being used to configure the model</param>
         public void ConfigureModel(SailModelTypes model, SailModelArgs args)
         {
-            _models[model] = new(args);
+            _models[model] = new(args, _handlers[model]);
         }
 
         /// <summary>
@@ -55,7 +69,8 @@ namespace Sail.NET
         /// <param name="model">The model being configured</param>
         /// <param name="tokens">The new tokens value</param>
         /// <param name="temperature">The new temperature value</param>
-        public void ReconfigureModel(SailModelTypes model, int tokens = 0, double temperature = 0)
+        /// <param name="count">The new count value</param>
+        public void ReconfigureModel(SailModelTypes model, int tokens = 0, double temperature = 0, int count = 0)
         {
             if (_models.TryGetValue(model, out var sailModel))
             {
@@ -68,6 +83,11 @@ namespace Sail.NET
                 {
                     sailModel.Temperature = temperature;
                 }
+
+                if (count > 0)
+                {
+                    sailModel.Count = count;
+                }
             }
         }
 
@@ -79,7 +99,7 @@ namespace Sail.NET
         /// <param name="tokens">The tokens value for the message being sent</param>
         /// <param name="temperature">TThe temperature value for the message being sent</param>
         /// <param name="count">The count value for the message being sent</param>
-        /// <returns></returns>
+        /// <returns>The context for the message that has been sent</returns>
         public async Task<SailContext<SailMessage>> SendRequestAsync(string input, SailModelTypes model, int tokens = 0, double temperature = 0, int count = 1)
         {
             SailMessage message = new()

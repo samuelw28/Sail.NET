@@ -10,6 +10,6 @@
         public string Address { get; set; }
         public int Tokens { get; set; }
         public double Temperature { get; set; }
-        public SailApiHandler Handler { get; set; }
+        public int Count { get; set; }
     }
 }

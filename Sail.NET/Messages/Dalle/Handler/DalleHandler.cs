@@ -12,7 +12,7 @@ namespace Sail.NET
             DalleRequest request = new()
             {
                 Prompt = input,
-                Count = count,
+                Count = count == 0 ? model.Count : count,
             };
 
             return JsonSerializer.Serialize(request);

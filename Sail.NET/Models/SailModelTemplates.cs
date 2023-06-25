@@ -16,7 +16,7 @@
                     Address = "https://api.openai.com/v1/chat/completions",
                     Tokens = 100,
                     Temperature = 0.5,
-                    Handler = new GptHandler()
+                    Count = 1
                 }
             },
             {
@@ -28,7 +28,7 @@
                     Address = "https://api.openai.com/v1/images/generations",
                     Tokens = 100,
                     Temperature = 0.5,
-                    Handler = new DalleHandler()
+                    Count = 1
                 }
             }
         };
