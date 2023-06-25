@@ -10,13 +10,13 @@ var processor = new SailProcessor();
 
 // Create the arguments to pass in
 var processorArgs = new SailProcessorArgs()
-  {
-      ApiKey = "*** API KEY GOES HERE ***",
-      Models = new()
-      {
-          SailModelTypes.GPT3Point5
-      }
-  };
+{
+    ApiKey = "*** API KEY GOES HERE ***",
+    Models = new()
+    {
+        SailModelTypes.GPT3Point5
+    }
+};
 
 // Initialize the processor
 processor.Initialize(processorArgs);
