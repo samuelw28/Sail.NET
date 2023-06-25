@@ -22,7 +22,7 @@ var processorArgs = new SailProcessorArgs()
 processor.Initialize(processorArgs);
 
 // Send a request
-SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailModelTypes.DALLE, count: 1);
+SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailModelTypes.GPT3Point5, count: 1);
 
 // Check if response is successful
 if (response.Success)
@@ -37,6 +37,7 @@ if (response.Success)
 var dalleArgs = new SailModelArgs()
 {
     Name = "DALL-E",
+    Address = "https://api.openai.com/v1/images/generations",
     Count = 1
 };
 
