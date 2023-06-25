@@ -14,8 +14,7 @@ var processorArgs = new SailProcessorArgs()
       ApiKey = "*** API KEY GOES HERE ***",
       Models = new()
       {
-          SailModelTypes.GPT3Point5,
-          SailModelTypes.DALLE
+          SailModelTypes.GPT3Point5
       }
   };
 
