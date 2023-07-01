@@ -22,13 +22,22 @@ var processorArgs = new SailProcessorArgs()
 processor.Initialize(processorArgs);
 
 // Send a request
-SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailModelTypes.GPT3Point5, count: 1);
+SailContext<SailMessage> response = await processor.SendRequestAsync(
+    "Hello World!",
+    SailModelTypes.GPT3Point5,
+    count: 1
+    );
 
 // Check if response is successful
 if (response.Success)
 {
     // Output response
     Console.WriteLine("Response: " + response.Result.Output);
+}
+else
+{
+    // Output error
+    Console.WriteLine("Error: " + response.Exception);
 }
 ```
 ## Additional Implementation
