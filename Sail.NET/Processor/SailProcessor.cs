@@ -92,21 +92,33 @@ namespace Sail.NET
         }
 
         /// <summary>
+        /// Clears the model's message history
+        /// </summary>
+        /// <param name="model">The model being cleared</param>
+        public void ClearModelHistory(SailModelTypes model)
+        {
+            _models[model].Handler.ClearHistory();
+        }
+
+        /// <summary>
         /// Sends a request asynchronously
         /// </summary>
-        /// <param name="input">The input text/prompt</param>
+        /// <param name="prompt">The input prompt</param>
         /// <param name="model">The model being used</param>
         /// <param name="tokens">The tokens value for the message being sent</param>
         /// <param name="temperature">TThe temperature value for the message being sent</param>
         /// <param name="count">The count value for the message being sent</param>
         /// <returns>The context for the message that has been sent</returns>
-        public async Task<SailContext<SailMessage>> SendRequestAsync(string input, SailModelTypes model, int tokens = 0, double temperature = 0, int count = 1)
+        public async Task<SailContext<SailMessage>> SendRequestAsync(string prompt, SailModelTypes model, int tokens = 0, double temperature = 0, int count = 1)
         {
             SailMessage message = new()
             {
                 ID = new SailEvent().ID,
                 Model = model,
-                Input = input
+                Input = new()
+                {
+                    Prompt = prompt
+                }
             };
 
             if (_models == null)
@@ -121,7 +133,7 @@ namespace Sail.NET
 
             try
             {
-                string json = sailModel.Handler.CreateRequest(input, sailModel, tokens, temperature, count);
+                string json = sailModel.Handler.CreateRequest(prompt, sailModel, tokens, temperature, count);
 
                 StringContent content = new(
                     json,
@@ -152,7 +164,7 @@ namespace Sail.NET
         {
             try
             {
-                message.Output = _models[message.Model].Handler.CreateResponse(context);
+                message.Output = _models[message.Model].Handler.GetMessageOutput(context);
 
                 return new SailContext<SailMessage>(message, true);
             }

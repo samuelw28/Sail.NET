@@ -33,11 +33,20 @@ namespace Sail.NET
             return JsonSerializer.Serialize(request);
         }
 
-        public override string CreateResponse(string context)
+        public override SailMessageOutput GetMessageOutput(string context)
         {
             GptResponse response = JsonSerializer.Deserialize<GptResponse>(context);
 
-            return response.Choices[0].Message.Data;
+            if (response.Choices != null)
+            {
+                return new()
+                {
+                    Text = response.Choices[0].Message.Data,
+                    Tokens = response.TokenInfo.TotalTokens
+                };
+            }
+
+            throw new Exception();
         }
 
         public override void ClearHistory()

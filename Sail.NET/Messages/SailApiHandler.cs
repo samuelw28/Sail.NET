@@ -21,7 +21,7 @@
         /// </summary>
         /// <param name="context">The response that has been recieved</param>
         /// <returns>The response text</returns>
-        public abstract string CreateResponse(string context);
+        public abstract SailMessageOutput GetMessageOutput(string context);
 
         /// <summary>
         /// Clears any stored messages, if the model has that functionality

@@ -7,7 +7,7 @@
     {
         public int ID { get; set; }
         public SailModelTypes Model { get; set; }
-        public string Input { get; set; }
-        public string Output { get; set; }
+        public SailMessageInput Input { get; set; }
+        public SailMessageOutput Output { get; set; }
     }
 }

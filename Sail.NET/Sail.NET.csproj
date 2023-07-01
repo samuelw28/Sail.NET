@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyVersion>0.2.4</AssemblyVersion>
-    <FileVersion>0.2.4</FileVersion>
+    <AssemblyVersion>0.3.1</AssemblyVersion>
+    <FileVersion>0.3.1</FileVersion>
     <SignAssembly>False</SignAssembly>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Sail.NET</Title>
@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/samuelw28/Sail.NET</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>AI, ChatGPT, DALL-E, .NET</PackageTags>
-    <Version>0.2.4</Version>
+    <Version>0.3.1</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>

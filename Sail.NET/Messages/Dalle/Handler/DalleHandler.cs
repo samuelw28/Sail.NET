@@ -18,11 +18,19 @@ namespace Sail.NET
             return JsonSerializer.Serialize(request);
         }
 
-        public override string CreateResponse(string context)
+        public override SailMessageOutput GetMessageOutput(string context)
         {
             DalleResponse response = JsonSerializer.Deserialize<DalleResponse>(context);
 
-            return response.Images[0].Url;
+            if (response.Images != null)
+            {
+                return new()
+                {
+                    Text = response.Images[0].Url
+                };
+            }
+
+            throw new Exception();
         }
     }
 }
