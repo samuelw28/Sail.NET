@@ -22,13 +22,22 @@ var processorArgs = new SailProcessorArgs()
 processor.Initialize(processorArgs);
 
 // Send a request
-SailContext<SailMessage> response = await processor.SendRequestAsync("Hello World!", SailModelTypes.GPT3Point5, count: 1);
+SailContext<SailMessage> response = await processor.SendRequestAsync(
+    "Hello World!",
+    SailModelTypes.GPT3Point5,
+    count: 1
+    );
 
 // Check if response is successful
 if (response.Success)
 {
     // Output response
-    Console.WriteLine("Response: " + response.Result.Output);
+    Console.WriteLine("Response: " + response.Result.Output.Text);
+}
+else
+{
+    // Output error
+    Console.WriteLine("Error: " + response.Exception);
 }
 ```
 ## Additional Implementation
@@ -46,8 +55,17 @@ processor.ConfigureModel(SailModelTypes.DALLE, dalleArgs);
 
 // Reconfigure model with updated settings
 processor.ReconfigureModel(SailModelTypes.GPT3Point5, temperature: 0.1);
+
+// Clears message history for a model
+processor.ClearModelHistory(SailModelTypes.GPT3Point5);
+
 ```
 ## History
+### Version 0.3
+#### Version 0.3.1
+- Added new message input and output objects
+- Added 'ClearModelHistory' function
+- Added additional error handling
 ### Version 0.2
 #### Version 0.2.4
 - Added missing 'Count' variable to 'SailModelArgs'
