@@ -31,6 +31,10 @@ namespace Sail.NET
                     new GptHandler()
                 },
                 {
+                    SailModelTypes.GPT3Point5Snapshot,
+                    new GptHandler()
+                },
+                {
                     SailModelTypes.DALLE,
                     new DalleHandler()
                 }
@@ -50,7 +54,14 @@ namespace Sail.NET
         /// <param name="model">The model being configured</param>
         private void ConfigureDefaultModel(SailModelTypes model)
         {
-            _models[model] = new(SailModelTemplates.DefaultModels[model], _handlers[model]);
+            var args = SailModelTemplates.DefaultModels[model];
+
+            _models[model] = new(args, _handlers[model]);
+
+            if (args.ConfigureFunctions)
+            {
+                _handlers[model].ConfigureFunctions(args.FunctionsLocation, args.Functions);
+            }
         }
 
         /// <summary>
@@ -61,6 +72,11 @@ namespace Sail.NET
         public void ConfigureModel(SailModelTypes model, SailModelArgs args)
         {
             _models[model] = new(args, _handlers[model]);
+
+            if (args.ConfigureFunctions)
+            {
+                _handlers[model].ConfigureFunctions(args.FunctionsLocation, args.Functions);
+            }
         }
 
         /// <summary>
@@ -95,9 +111,31 @@ namespace Sail.NET
         /// Clears the model's message history
         /// </summary>
         /// <param name="model">The model being cleared</param>
-        public void ClearModelHistory(SailModelTypes model)
+        /// <param name="clearSystemHistory">Whether to clear system messages as well</param>
+        public void ClearModelHistory(SailModelTypes model, bool clearSystemHistory = false)
         {
-            _models[model].Handler.ClearHistory();
+            _models[model].Handler.ClearHistory(clearSystemHistory);
+        }
+
+        /// <summary>
+        /// Adds a system message to the model
+        /// </summary>
+        /// <param name="model">The model the message is being added to</param>
+        /// <param name="message">The message to be added</param>
+        public void AddSystemMessage(SailModelTypes model, string message)
+        {
+            _models[model].Handler.AddSystemMessage(message);
+        }
+
+        /// <summary>
+        /// Configures function handling for a model
+        /// </summary>
+        /// <param name="model">The model being configured</param>
+        /// <param name="location">The location of the functions</param>
+        /// <param name="functions">The functions being configured</param>
+        public void ConfigureModelFunctions(SailModelTypes model, Type location, Dictionary<string, SailFunction> functions)
+        {
+            _handlers[model].ConfigureFunctions(location, functions);
         }
 
         /// <summary>
@@ -108,8 +146,9 @@ namespace Sail.NET
         /// <param name="tokens">The tokens value for the message being sent</param>
         /// <param name="temperature">TThe temperature value for the message being sent</param>
         /// <param name="count">The count value for the message being sent</param>
+        /// <param name="isFunctionResponse">Whether the message is being created by function call</param>
         /// <returns>The context for the message that has been sent</returns>
-        public async Task<SailContext<SailMessage>> SendRequestAsync(string prompt, SailModelTypes model, int tokens = 0, double temperature = 0, int count = 1)
+        public async Task<SailContext<SailMessage>> SendRequestAsync(string prompt, SailModelTypes model, int tokens = 0, double temperature = 0, int count = 1, bool isFunctionResponse = false)
         {
             SailMessage message = new()
             {
@@ -133,7 +172,7 @@ namespace Sail.NET
 
             try
             {
-                string json = sailModel.Handler.CreateRequest(prompt, sailModel, tokens, temperature, count);
+                string json = sailModel.Handler.CreateRequest(prompt, sailModel, tokens, temperature, count, isFunctionResponse);
 
                 StringContent content = new(
                     json,
@@ -146,11 +185,11 @@ namespace Sail.NET
                     content
                     );
 
-                return BuildResponse(message, await httpResponse.Content.ReadAsStringAsync());
+                return await BuildResponse(message, await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception ex)
             {
-                return new SailContext<SailMessage>(message, false, ex.InnerException.ToString());
+                return new SailContext<SailMessage>(message, false, ex.InnerException != null ? ex.InnerException.ToString() : ex.Message);
             }
         }
 
@@ -160,11 +199,18 @@ namespace Sail.NET
         /// <param name="message">The message that the response is related to</param>
         /// <param name="context">The response text</param>
         /// <returns>The context for the message that has been sent</returns>
-        private SailContext<SailMessage> BuildResponse(SailMessage message, string context)
+        private async Task<SailContext<SailMessage>> BuildResponse(SailMessage message, string context)
         {
             try
             {
                 message.Output = _models[message.Model].Handler.GetMessageOutput(context);
+
+                if (string.IsNullOrEmpty(message.Output.Text))
+                {
+                    SailContext<SailMessage> functionMessage = await SendRequestAsync(string.Empty, SailModelTypes.GPT3Point5Snapshot, isFunctionResponse: true);
+
+                    message.Output = functionMessage.Result.Output;
+                }
 
                 return new SailContext<SailMessage>(message, true);
             }

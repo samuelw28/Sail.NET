@@ -6,6 +6,7 @@
     public enum SailModelTypes
     {
         GPT3Point5,
+        GPT3Point5Snapshot,
         DALLE
     }
 }

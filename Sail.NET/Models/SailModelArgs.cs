@@ -11,5 +11,8 @@
         public int Tokens { get; set; }
         public double Temperature { get; set; }
         public int Count { get; set; }
+        public bool ConfigureFunctions { get; set; }
+        public Type FunctionsLocation { get; set; }
+        public Dictionary<string, SailFunction> Functions { get; set; }
     }
 }

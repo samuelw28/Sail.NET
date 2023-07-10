@@ -40,7 +40,7 @@ else
     Console.WriteLine("Error: " + response.Exception);
 }
 ```
-## Additional Implementation
+## Additional Functionality
 ```C#
 // Create additional model arguments
 var dalleArgs = new SailModelArgs()
@@ -59,8 +59,69 @@ processor.ReconfigureModel(SailModelTypes.GPT3Point5, temperature: 0.1);
 // Clears message history for a model
 processor.ClearModelHistory(SailModelTypes.GPT3Point5);
 
+// Set a system message
+processor.AddSystemMessage(SailModelTypes.GPT3Point5, "Respond in the style of Yoda");
+```
+## Function Calling
+In order to use function calling, the used model must be the 'GPT3Point5Snapshot'. The functions you wish the API to recognise need to be added to the model manually. The follwoing parameters can be added to the 'SailModelArgs' object when configuring a model, or called directly using the 'ConfigureModelFunctions' method.
+- 'ConfigureFunctions': Whether function calling should be used *'SailModelArgs' only
+- 'FunctionsLocation': The class that all of the functions are located in
+- 'Functions': A dictionary of 'SailFunction' objects that contain the data for the configured functions
+```C#
+public class FunctionsLocation
+{
+    public static void ExampleFunction(string example)
+    {
+        // Functionality goes here
+    }
+}
+
+public class ConfigureFunctions
+{
+    public void ConfigureExample(SailProcessor processor)
+    {
+        // Create location object
+        var location = new FunctionsLocation();
+
+        // Configure model functions
+        processor.ConfigureModelFunctions(SailModelTypes.GPT3Point5Snapshot, location.GetType(), GetFunctions());
+    }
+
+    public Dictionary<string, SailFunction> GetFunctions()
+    {
+        var functions = new Dictionary<string, SailFunction>
+        {
+            {
+                "ExampleFunction",
+                SailFunctionProcessor.BuildFunction(
+                    "ExampleFunction",
+                    "An example function",
+                    new
+                    {
+                        Example = new SailFunctionProperty()
+                        {
+                            Type = "string",
+                            Description = "An example variable"
+                        }
+                    },
+                    new List<string>()
+                    {    
+                        "example"
+                    }
+                )
+            }
+        };
+        return functions;
+    }
+}
 ```
 ## History
+## Version 0.4
+### Version 0.4.1
+- Added support for function calling
+- Added functionality for setting system messages
+- Added 'GPT3Point5Snapshot' model support
+- Fixed issue where assistant messages weren't being stored  
 ### Version 0.3
 #### Version 0.3.1
 - Added new message input and output objects

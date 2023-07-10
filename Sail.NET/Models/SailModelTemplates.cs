@@ -12,11 +12,25 @@
                 new()
                 {
                     Name = "ChatGPT 3.5",
-                    Model = "gpt-3.5-turbo",
+                    Model = "gpt-3.5-turbo-16k",
                     Address = "https://api.openai.com/v1/chat/completions",
                     Tokens = 100,
                     Temperature = 0.5,
-                    Count = 1
+                    Count = 1,
+                    ConfigureFunctions = false
+                }
+            },
+            {
+                SailModelTypes.GPT3Point5Snapshot,
+                new()
+                {
+                    Name = "ChatGPT 3.5 Snapshot",
+                    Model = "gpt-3.5-turbo-16k-0613",
+                    Address = "https://api.openai.com/v1/chat/completions",
+                    Tokens = 100,
+                    Temperature = 0.5,
+                    Count = 1,
+                    ConfigureFunctions = false
                 }
             },
             {
@@ -28,7 +42,8 @@
                     Address = "https://api.openai.com/v1/images/generations",
                     Tokens = 100,
                     Temperature = 0.5,
-                    Count = 1
+                    Count = 1,
+                    ConfigureFunctions = false
                 }
             }
         };

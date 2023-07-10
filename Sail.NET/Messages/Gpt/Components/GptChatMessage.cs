@@ -12,5 +12,13 @@ namespace Sail.NET
 
         [JsonPropertyName("content")]
         public string Data { get; set; }
+
+        [JsonPropertyName("name")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public string FunctionName { get; set; }
+
+        [JsonPropertyName("function_call")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public object FunctionCall { get; set; }
     }
 }

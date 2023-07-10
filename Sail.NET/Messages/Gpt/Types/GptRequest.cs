@@ -1,7 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace Sail.NET
-{    /// <summary>
+{  
+    /// <summary>
      /// A request sent to the ChatGPT endpoint
      /// </summary>
     internal class GptRequest
@@ -17,5 +18,9 @@ namespace Sail.NET
 
         [JsonPropertyName("temperature")]
         public double Temperature { get; set; }
+
+        [JsonPropertyName("functions")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<SailFunction> Functions { get; set; }
     }
 }
