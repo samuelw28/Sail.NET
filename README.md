@@ -117,6 +117,8 @@ public class ConfigureFunctions
 ```
 ## History
 ## Version 0.4
+### Version 0.4.2
+- Added GPT4 support
 ### Version 0.4.1
 - Added support for function calling
 - Added functionality for setting system messages
