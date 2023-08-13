@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/samuelw28/Sail.NET</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>AI, ChatGPT, DALL-E, .NET</PackageTags>
-    <Version>0.4.1</Version>
+    <Version>0.4.2</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
