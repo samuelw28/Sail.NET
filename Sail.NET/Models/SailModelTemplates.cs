@@ -32,6 +32,18 @@
                     Count = 1,
                     ConfigureFunctions = false
                 }
+            },            {
+                SailModelTypes.GPT4,
+                new()
+                {
+                    Name = "ChatGPT 4",
+                    Model = "gpt-4",
+                    Address = "https://api.openai.com/v1/chat/completions",
+                    Tokens = 100,
+                    Temperature = 0.5,
+                    Count = 1,
+                    ConfigureFunctions = false
+                }
             },
             {
                 SailModelTypes.DALLE,

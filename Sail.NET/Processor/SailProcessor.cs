@@ -35,6 +35,10 @@ namespace Sail.NET
                     new GptHandler()
                 },
                 {
+                    SailModelTypes.GPT4,
+                    new GptHandler()
+                },
+                {
                     SailModelTypes.DALLE,
                     new DalleHandler()
                 }

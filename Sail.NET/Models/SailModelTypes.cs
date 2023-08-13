@@ -7,6 +7,7 @@
     {
         GPT3Point5,
         GPT3Point5Snapshot,
+        GPT4,
         DALLE
     }
 }
