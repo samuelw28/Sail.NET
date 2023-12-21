@@ -15,7 +15,7 @@
     <RepositoryUrl>https://github.com/samuelw28/Sail.NET</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>AI, ChatGPT, DALL-E, .NET</PackageTags>
-    <Version>0.5.2</Version>
+    <Version>0.5.1</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <PackageReadmeFile>README.md</PackageReadmeFile>
