@@ -61,6 +61,12 @@ processor.ClearModelHistory(SailModelTypes.GPT3Point5);
 
 // Set a system message
 processor.AddSystemMessage(SailModelTypes.GPT3Point5, "Respond in the style of Yoda");
+
+// Remove a system message
+processor.RemoveSystemMessage(SailModelTypes.GPT3Point5, "Respond in the style of Yoda");
+
+// Retrieve messages from a specific model
+var messages = processor.GetModelMessages(SailModelTypes.GPT3Point5);
 ```
 ## Function Calling
 In order to use function calling, the used model must be the 'GPT3Point5Snapshot'. The functions you wish the API to recognise need to be added to the model manually. The follwoing parameters can be added to the 'SailModelArgs' object when configuring a model, or called directly using the 'ConfigureModelFunctions' method.
@@ -116,6 +122,9 @@ public class ConfigureFunctions
 }
 ```
 ## History
+## Version 0.5
+- Added return types to 'AddSystemMessage' and 'RemoveSystemMessage' functions
+- Added DALLE-3 support
 ## Version 0.4
 ### Version 0.4.2
 - Added GPT4 support
