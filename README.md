@@ -123,6 +123,7 @@ public class ConfigureFunctions
 ```
 ## History
 ## Version 0.5
+## Version 0.5.1
 - Added return types to 'AddSystemMessage' and 'RemoveSystemMessage' functions
 - Added DALLE-3 support
 ## Version 0.4
