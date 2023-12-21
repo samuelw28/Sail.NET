@@ -122,14 +122,14 @@ public class ConfigureFunctions
 }
 ```
 ## History
-## Version 0.5
-### Version 0.5.1
+### Version 0.5
+#### Version 0.5.1
 - Added return types to 'AddSystemMessage' and 'RemoveSystemMessage' functions
 - Added DALLE-3 support
-## Version 0.4
-### Version 0.4.2
+### Version 0.4
+#### Version 0.4.2
 - Added GPT4 support
-### Version 0.4.1
+#### Version 0.4.1
 - Added support for function calling
 - Added functionality for setting system messages
 - Added 'GPT3Point5Snapshot' model support
