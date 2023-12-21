@@ -46,11 +46,24 @@
                 }
             },
             {
-                SailModelTypes.DALLE,
+                SailModelTypes.DALLE2,
                 new()
                 {
-                    Name = "DALL-E",
-                    Model = "",
+                    Name = "DALL-E 2",
+                    Model = "dall-e-2",
+                    Address = "https://api.openai.com/v1/images/generations",
+                    Tokens = 100,
+                    Temperature = 0.5,
+                    Count = 1,
+                    ConfigureFunctions = false
+                }
+            },
+                        {
+                SailModelTypes.DALLE3,
+                new()
+                {
+                    Name = "DALL-E 3",
+                    Model = "dall-e-3",
                     Address = "https://api.openai.com/v1/images/generations",
                     Tokens = 100,
                     Temperature = 0.5,

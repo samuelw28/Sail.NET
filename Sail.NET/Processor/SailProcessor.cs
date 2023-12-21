@@ -15,6 +15,8 @@ namespace Sail.NET
 
         private Dictionary<SailModelTypes, SailModel> _models { get; set; }
 
+        private Dictionary<int, SailMessage> _messages { get; set; }
+
         /// <summary>
         /// Initializes the processor and creates the required objects for it to function
         /// </summary>
@@ -39,12 +41,18 @@ namespace Sail.NET
                     new GptHandler()
                 },
                 {
-                    SailModelTypes.DALLE,
+                    SailModelTypes.DALLE2,
+                    new DalleHandler()
+                },
+                {
+                    SailModelTypes.DALLE3,
                     new DalleHandler()
                 }
             };
 
             _models = new();
+
+            _messages = new();
 
             foreach (SailModelTypes model in args.Models)
             {
@@ -126,9 +134,19 @@ namespace Sail.NET
         /// </summary>
         /// <param name="model">The model the message is being added to</param>
         /// <param name="message">The message to be added</param>
-        public void AddSystemMessage(SailModelTypes model, string message)
+        public bool AddSystemMessage(SailModelTypes model, string message)
         {
-            _models[model].Handler.AddSystemMessage(message);
+            return _models[model].Handler.AddSystemMessage(message);
+        }
+
+        /// <summary>
+        /// Removes a system message from the model
+        /// </summary>
+        /// <param name="model">The model the message is being removed from</param>
+        /// <param name="message">The message to be removed</param>
+        public bool RemoveSystemMessage(SailModelTypes model, string message)
+        {
+           return _models[model].Handler.RemoveSystemMessage(message);
         }
 
         /// <summary>
@@ -140,6 +158,21 @@ namespace Sail.NET
         public void ConfigureModelFunctions(SailModelTypes model, Type location, Dictionary<string, SailFunction> functions)
         {
             _handlers[model].ConfigureFunctions(location, functions);
+        }
+
+        public List<SailMessage> GetModelMessages(SailModelTypes model)
+        {
+            List<SailMessage> messages = new();
+
+            foreach (var msg in _messages)
+            {
+                if (msg.Value.Model == model)
+                {
+                    messages.Add(msg.Value);
+                }
+            }
+
+            return messages;
         }
 
         /// <summary>
@@ -173,6 +206,7 @@ namespace Sail.NET
             {
                 return new SailContext<SailMessage>(message, false, SailErrors.ModelNotConfigured(model.ToString()));
             }
+
 
             try
             {
@@ -215,6 +249,8 @@ namespace Sail.NET
 
                     message.Output = functionMessage.Result.Output;
                 }
+
+                _messages[message.ID] = message;
 
                 return new SailContext<SailMessage>(message, true);
             }

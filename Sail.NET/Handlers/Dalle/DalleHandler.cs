@@ -35,22 +35,27 @@ namespace Sail.NET
 
         public override void ConfigureFunctions(Type location, Dictionary<string, SailFunction> functions)
         {
-            throw new NotImplementedException(SailErrors.FunctionalityNotSupported(SailModelTypes.DALLE.ToString()));
+            throw new NotImplementedException(SailErrors.FunctionalityNotSupported("DALL-E"));
         }
 
         public override string LocateFunctions(string name, string args)
         {
-            throw new NotImplementedException(SailErrors.FunctionalityNotSupported(SailModelTypes.DALLE.ToString()));
+            throw new NotImplementedException(SailErrors.FunctionalityNotSupported("DALL-E"));
         }
 
-        public override void AddSystemMessage(string message)
+        public override bool AddSystemMessage(string message)
         {
-            throw new NotImplementedException(SailErrors.FunctionalityNotSupported(SailModelTypes.DALLE.ToString()));
+            throw new NotImplementedException(SailErrors.FunctionalityNotSupported("DALL-E"));
+        }
+
+        public override bool RemoveSystemMessage(string message)
+        {
+            throw new NotImplementedException(SailErrors.FunctionalityNotSupported("DALL-E"));
         }
 
         public override void ClearHistory(bool clearSystemHistory)
         {
-            throw new NotImplementedException(SailErrors.FunctionalityNotSupported(SailModelTypes.DALLE.ToString()));
+            throw new NotImplementedException(SailErrors.FunctionalityNotSupported("DALL-E"));
         }
     }
 }

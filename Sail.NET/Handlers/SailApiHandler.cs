@@ -48,6 +48,12 @@
         /// Adds a system message to a model, if the model has that functionality
         /// </summary>
         /// <param name="message">The message to be added</param>
-        public abstract void AddSystemMessage(string message);
+        public abstract bool AddSystemMessage(string message);
+
+        /// <summary>
+        /// Removes a system message from a model, if the model has that functionality
+        /// </summary>
+        /// <param name="message">The message to be removed</param>
+        public abstract bool RemoveSystemMessage(string message);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Text.Json;
-using System.Windows.Input;
 
 namespace Sail.NET
 {
@@ -108,13 +107,36 @@ namespace Sail.NET
             }
         }
 
-        public override void AddSystemMessage(string message)
+        public override bool AddSystemMessage(string message)
         {
-            _messages.Add(new()
+            try
             {
-                Data = message,
-                Role = "system"
-            });
+                _messages.Add(new()
+                {
+                    Data = message,
+                    Role = "system"
+                });
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public override bool RemoveSystemMessage(string message)
+        {
+            try
+            {
+                var msg = _messages.Where(m => m.Role == "system").ToList().Find(m => m.Data == message);
+                _messages.Remove(msg);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public override void ClearHistory(bool clearSystemHistory)
