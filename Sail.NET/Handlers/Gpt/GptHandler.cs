@@ -37,9 +37,15 @@ namespace Sail.NET
             {
                 Model = model.Model,
                 Messages = _messages,
-                Tokens = tokens == 0 ? model.Tokens : tokens,
-                Temperature = temperature == 0 ? model.Temperature : temperature,
-                Functions = _functions.Count != 0 ? _functions.Values.ToList() : null
+                Tokens = tokens == 0
+                        ? model.Tokens
+                        : tokens,
+                Temperature = temperature == 0
+                        ? model.Temperature 
+                        : temperature,
+                Functions = _functions.Count != 0 
+                        ? _functions.Values.ToList() 
+                        : null
             };
 
             return JsonSerializer.Serialize(request);
@@ -130,8 +136,15 @@ namespace Sail.NET
             try
             {
                 var msg = _messages.Where(m => m.Role == "system").ToList().Find(m => m.Data == message);
-                _messages.Remove(msg);
-                return true;
+
+                if (msg != null)
+                {
+                    _messages.Remove(msg);
+
+                    return true;
+                }
+
+                return false;
             }
             catch
             {

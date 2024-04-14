@@ -14,7 +14,7 @@ var processorArgs = new SailProcessorArgs()
     ApiKey = "*** API KEY GOES HERE ***",
     Models = new()
     {
-        SailModelTypes.GPT3Point5
+        { SailModelTypes.GPT3Point5, new List<string>() { "name" } }
     }
 };
 
@@ -25,6 +25,7 @@ processor.Initialize(processorArgs);
 SailContext<SailMessage> response = await processor.SendRequestAsync(
     "Hello World!",
     SailModelTypes.GPT3Point5,
+    "name",
     count: 1
     );
 
@@ -51,22 +52,22 @@ var dalleArgs = new SailModelArgs()
 };
 
 // Configure model with custom settings
-processor.ConfigureModel(SailModelTypes.DALLE, dalleArgs);
+processor.ConfigureModel(SailModelTypes.DALLE, "name", dalleArgs);
 
 // Reconfigure model with updated settings
-processor.ReconfigureModel(SailModelTypes.GPT3Point5, temperature: 0.1);
+processor.ReconfigureModel(SailModelTypes.GPT3Point5, "name", temperature: 0.1);
 
 // Clears message history for a model
-processor.ClearModelHistory(SailModelTypes.GPT3Point5);
+processor.ClearModelHistory(SailModelTypes.GPT3Point5, "name");
 
 // Set a system message
-processor.AddSystemMessage(SailModelTypes.GPT3Point5, "Respond in the style of Yoda");
+processor.AddSystemMessage(SailModelTypes.GPT3Point5, "name","Respond in the style of Yoda");
 
 // Remove a system message
-processor.RemoveSystemMessage(SailModelTypes.GPT3Point5, "Respond in the style of Yoda");
+processor.RemoveSystemMessage(SailModelTypes.GPT3Point5, "name", "Respond in the style of Yoda");
 
 // Retrieve messages from a specific model
-var messages = processor.GetModelMessages(SailModelTypes.GPT3Point5);
+var messages = processor.GetModelMessages(SailModelTypes.GPT3Point5, "name");
 ```
 ## Function Calling
 In order to use function calling, the used model must be the 'GPT3Point5Snapshot'. The functions you wish the API to recognise need to be added to the model manually. The follwoing parameters can be added to the 'SailModelArgs' object when configuring a model, or called directly using the 'ConfigureModelFunctions' method.
@@ -90,7 +91,7 @@ public class ConfigureFunctions
         var location = new FunctionsLocation();
 
         // Configure model functions
-        processor.ConfigureModelFunctions(SailModelTypes.GPT3Point5Snapshot, location.GetType(), GetFunctions());
+        processor.ConfigureModelFunctions(SailModelTypes.GPT3Point5Snapshot, "name", location.GetType(), GetFunctions());
     }
 
     public Dictionary<string, SailFunction> GetFunctions()
@@ -122,6 +123,9 @@ public class ConfigureFunctions
 }
 ```
 ## History
+### Version 0.6
+#### Version 0.6.1
+- Added name identifier to all models to allow for creation of multiple models with the same type
 ### Version 0.5
 #### Version 0.5.1
 - Added return types to 'AddSystemMessage' and 'RemoveSystemMessage' functions
