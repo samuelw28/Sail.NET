@@ -11,7 +11,7 @@
                 SailModelTypes.GPT3Point5,
                 new()
                 {
-                    Name = "ChatGPT 3.5",
+                    Name = "GPT 3.5",
                     Model = "gpt-3.5-turbo-16k",
                     Address = "https://api.openai.com/v1/chat/completions",
                     Tokens = 100,
@@ -24,7 +24,7 @@
                 SailModelTypes.GPT3Point5Snapshot,
                 new()
                 {
-                    Name = "ChatGPT 3.5 Snapshot",
+                    Name = "GPT 3.5 Snapshot",
                     Model = "gpt-3.5-turbo-16k-0613",
                     Address = "https://api.openai.com/v1/chat/completions",
                     Tokens = 100,
@@ -32,12 +32,52 @@
                     Count = 1,
                     ConfigureFunctions = false
                 }
-            },            {
+            },
+            {
                 SailModelTypes.GPT4,
                 new()
                 {
-                    Name = "ChatGPT 4",
+                    Name = "GPT 4",
                     Model = "gpt-4",
+                    Address = "https://api.openai.com/v1/chat/completions",
+                    Tokens = 100,
+                    Temperature = 0.5,
+                    Count = 1,
+                    ConfigureFunctions = false
+                }
+            },
+            {
+                SailModelTypes.GPT4o,
+                new()
+                {
+                    Name = "GPT 4o",
+                    Model = "gpt-4o",
+                    Address = "https://api.openai.com/v1/chat/completions",
+                    Tokens = 100,
+                    Temperature = 0.5,
+                    Count = 1,
+                    ConfigureFunctions = false
+                }
+            },
+            {
+                SailModelTypes.GPT4oMini,
+                new()
+                {
+                    Name = "GPT 4o Mini",
+                    Model = "gpt-4o-mini",
+                    Address = "https://api.openai.com/v1/chat/completions",
+                    Tokens = 100,
+                    Temperature = 0.5,
+                    Count = 1,
+                    ConfigureFunctions = false
+                }
+            },
+            {
+                SailModelTypes.GPT4Point1Nano,
+                new()
+                {
+                    Name = "GPT 4.1 Nano",
+                    Model = "gpt-4.1-nano",
                     Address = "https://api.openai.com/v1/chat/completions",
                     Tokens = 100,
                     Temperature = 0.5,
